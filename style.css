@@ -1,0 +1,31 @@
+body{
+
+    display: flex;
+
+    align-items: center;
+
+    flex-direction: column;
+
+}
+
+#container{
+
+    height: fit-content;
+
+    display: flex;
+
+    align-items: flex-end;
+
+}
+
+.bar{
+
+    height: 200px;
+
+    width: 10px;
+
+    margin: 1px;
+
+    background-color: black;
+
+}
