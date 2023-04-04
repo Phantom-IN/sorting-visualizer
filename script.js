@@ -31,6 +31,7 @@ function init() {
     document.getElementById("bs").removeAttribute('hidden');
     document.getElementById("qs").removeAttribute('hidden');
     document.getElementById("hs").removeAttribute('hidden');
+    document.getElementById("ss").removeAttribute('hidden');
   }
 }
 
@@ -120,35 +121,68 @@ function quickSort(copy) {
   return swaps;
 }
 
-function heapSort(arr) {
-  const n = arr.length;
+function heapSort(copy) {
+  const arr4 = copy;
+  const n = arr4.length;
   const swaps = [];
   for (let i = Math.floor(n / 2) - 1; i >= 0; i--) {
-    heapify(arr, n, i, swaps);
+    heapify(arr4, n, i, swaps);
   }
   for (let i = n - 1; i >= 0; i--) {
-    [arr[0], arr[i]] = [arr[i], arr[0]];
+    [arr4[0], arr4[i]] = [arr4[i], arr4[0]];
     swaps.push([0, i]);
-    heapify(arr, i, 0, swaps);
+    heapify(arr4, i, 0, swaps);
   }
+  var lable = document.getElementById('text');
+  lable.innerHTML = '';
+  lable.innerHTML += "The sorted array is: " + arr4;
   return swaps;
 }
 
-function heapify(arr, n, i, swaps) {
+function heapify(arr4, n, i, swaps) {
   let largest = i;
   const left = 2 * i + 1;
   const right = 2 * i + 2;
-  if (left < n && arr[left] > arr[largest]) {
+  if (left < n && arr4[left] > arr4[largest]) {
     largest = left;
   }
-  if (right < n && arr[right] > arr[largest]) {
+  if (right < n && arr4[right] > arr4[largest]) {
     largest = right;
   }
   if (largest !== i) {
-    [arr[i], arr[largest]] = [arr[largest], arr[i]];
+    [arr4[i], arr4[largest]] = [arr4[largest], arr4[i]];
     swaps.push([i, largest]);
-    heapify(arr, n, largest, swaps);
+    heapify(arr4, n, largest, swaps);
   }
+}
+
+function selectionSort(copy) {
+  const arr5 = copy;
+  const n = arr5.length;
+  const swaps = [];
+
+  for (let i = 0; i < n - 1; i++) {
+    let minIndex = i;
+    for (let j = i + 1; j < n; j++) {
+      if (arr5[j] < arr5[minIndex]) {
+        minIndex = j;
+      }
+    }
+    if (minIndex !== i) {
+      [arr5[i], arr5[minIndex]] = [arr5[minIndex], arr5[i]];
+      swaps.push([i, minIndex]);
+    }
+  }
+  var lable = document.getElementById('text');
+  lable.innerHTML = '';
+  lable.innerHTML += "The sorted array is: " + arr5;
+  return swaps;
+}
+
+function ss() {
+  const copy = [...arr];
+  const swap = selectionSort(copy);
+  animate(swap);
 }
 
 function hs() {
