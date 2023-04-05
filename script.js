@@ -32,6 +32,7 @@ function init() {
     document.getElementById("qs").removeAttribute('hidden');
     document.getElementById("hs").removeAttribute('hidden');
     document.getElementById("ss").removeAttribute('hidden');
+    document.getElementById("is").removeAttribute('hidden');
   }
 }
 
@@ -179,6 +180,34 @@ function selectionSort(copy) {
   return swaps;
 }
 
+function insertionSort(copy) {
+  const arr6 = copy;
+  const n = arr6.length;
+  const swaps = [];
+
+  for (let i = 1; i < n; i++) {
+    let j = i - 1;
+    const current = arr6[i];
+    while (j >= 0 && arr6[j] > current) {
+      arr6[j + 1] = arr6[j];
+      swaps.push([j, j + 1]);
+      j--;
+    }
+    arr6[j + 1] = current;
+  }
+
+  var lable = document.getElementById('text');
+  lable.innerHTML = '';
+  lable.innerHTML += "The sorted array is: " + arr6;
+  return swaps;
+}
+
+function is() {
+  const copy = [...arr];
+  const swap = selectionSort(copy);
+  animate(swap);
+}
+
 function ss() {
   const copy = [...arr];
   const swap = selectionSort(copy);
@@ -203,4 +232,3 @@ function qs() {
   // console.log(swap);
   animate(swap);
 }
-
